@@ -9,6 +9,9 @@ import ShowProducts from "./ShowProducts";
 const Products = (props) => {
 	const [filter, setFilter] = useState([]);
 	const [data, setData] = useContext(ProductContext);
+	const handleSort = () => {
+		setData(data.sort((a, b) => a.price - b.price));
+	};
 
 	return (
 		<div>
@@ -23,19 +26,13 @@ const Products = (props) => {
 					<div className="d-flex justify-content-center mb-5 me-2 mx-2">
 						<Stack gap={2} direction="horizontal" variant="outline-secondary">
 							<Button onClick={() => setFilter(data)}>All</Button>
+						
 							<Button
-								onClick={() =>
-									setFilter(data.filter(() => false))
+								onClick={
+									handleSort
 								}
 							>
-								Cancel
-							</Button>
-							<Button
-								onClick={() =>
-									setFilter(data.filter((item) => item.name === "Nike"))
-								}
-							>
-								Nike
+								Sort by price
 							</Button>
 							<Button
 								onClick={() =>

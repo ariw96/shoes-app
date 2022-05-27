@@ -9,7 +9,7 @@ const AddShoes = (props) => {
 	const [data, setData] = useContext(ProductContext);
 	const [url, setUrl] = useState("");
 	const [name, setName] = useState("");
-	const [price, setPrice] = useState(0);
+	const [price, setPrice] = useState(10);
 
 	const handleUrlChange = (e) => {
 		setUrl(e.target.value);
@@ -22,14 +22,25 @@ const AddShoes = (props) => {
 		setPrice(e.target.value);
 	};
 
-	const handleData = (e) => {
+	const handleData = async(e) => {
 		e.preventDefault();
 		setData([...data, { image: url, name: name, price: price }]);
 		setUrl("");
 		setName("");
-		setPrice("");
-		axios.post("http://localhost:3001/shoes", { image: url, name: name, price: price });
+		setPrice(10);
+		try {
+			const res = await axios.post("http://localhost:3001/shoes", {
+				image: url,
+				name: name,
+				price: price,
+			});
+			console.log(res);
+		} catch (err) {
+			console.log(err);
+		}
+	
 	};
+
 	return (
 		<div>
 			<Stack gap={2} className="col-md-5 mx-auto mt-5">
@@ -50,7 +61,6 @@ const AddShoes = (props) => {
 					/>
 					<Form.Control
 						type="number"
-						
 						className="my-3"
 						value={price}
 						onChange={handlePriceChange}
@@ -61,8 +71,6 @@ const AddShoes = (props) => {
 					</Button>
 				</Form>
 			</Stack>
-			
-			
 		</div>
 	);
 };

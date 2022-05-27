@@ -18,7 +18,7 @@ function NavBar(props) {
 		<>
 			<Navbar bg="warning" expand="lg">
 				<Container>
-					<Navbar.Brand className="fw-bold">MY-SHOP</Navbar.Brand>
+					<Navbar.Brand className="fw-bold">MY-CRUD SHOE APP</Navbar.Brand>
 					<Navbar.Toggle aria-controls="navbarScroll" />
 					<Navbar.Collapse id="navbarScroll">
 						<Nav className="mx-auto my-2 my-lg-0">

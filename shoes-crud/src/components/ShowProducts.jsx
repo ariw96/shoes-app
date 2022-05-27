@@ -28,7 +28,9 @@ const ShowProducts = ({filter}) => {
 				<Card.Body>
 				  <Card.Title>{item.name}</Card.Title>
 				  <Card.Title>{item.price}$</Card.Title>
+				  <NavLink to={`/${item.id}`}>
 				  <Button variant="warning"  >Edit </Button>
+				  </NavLink>
              
 
 				  <Button className="mx-2" variant="danger" value={item.id} onClick={()=>handleDelete(item.id)}>Delete </Button>
