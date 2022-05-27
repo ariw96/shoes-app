@@ -6,11 +6,14 @@ import Home from "./components/Home";
 import Products from "./components/Products";
 import Product from "./components/Product";
 import AddShoes from "./components/AddShoes";
-import { useState, useEffect } from "react";
+import { useState, useEffect,useContext } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ProductProvider } from "./components/ProductContext";
 
+
+
 function App() {
+	
 	return (
 		<ProductProvider>
 			<Router>
