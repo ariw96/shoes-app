@@ -3,7 +3,7 @@ import NavBar from "./components/NavBar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "font-awesome/css/font-awesome.min.css";
 import Home from "./components/Home";
-import Products from "./components/Products";
+import Buttons from "./components/Buttons";
 import EditShoe from "./components/EditShoe";
 import AddShoes from "./components/AddShoes";
 import { useState, useEffect,useContext } from "react";
@@ -21,7 +21,7 @@ function App() {
 				<NavBar />
 				<Routes>
 					<Route path="/" element={<Home />} />
-					<Route path="products" element={<Products />} />
+					<Route path="products" element={<Buttons />} />
 					<Route path="add" element={<AddShoes />} />
                     <Route path=":id" element={<EditShoe />} />
 				</Routes>

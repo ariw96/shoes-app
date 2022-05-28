@@ -6,11 +6,17 @@ import AddShoes from "./AddShoes";
 
 import ShowProducts from "./ShowProducts";
 
-const Products = (props) => {
+const Buttons = (props) => {
 	const [filter, setFilter] = useState([]);
 	const [data, setData] = useContext(ProductContext);
-	const handleSort = () => {
-		setData(data.sort((a, b) => a.price - b.price));
+	const [sortState, setSortState] = useState("high-to-low");
+	const sortPrice = () => {
+		if (sortState === "high-to-low") {
+			setSortState("low-to-high");
+			return	setFilter(data.sort((a, b) => a.price - b.price))
+		}	
+			setSortState("high-to-low");
+			return	setFilter(data.sort((a, b) => b.price - a.price))
 	};
 
 	return (
@@ -27,13 +33,7 @@ const Products = (props) => {
 						<Stack gap={2} direction="horizontal" variant="outline-secondary">
 							<Button onClick={() => setFilter(data)}>All</Button>
 						
-							<Button
-								onClick={
-									handleSort
-								}
-							>
-								Sort by price
-							</Button>
+							<Button	onClick={() => setFilter(sortPrice)}>Sort by price</Button>
 							<Button
 								onClick={() =>
 									setFilter(data.filter((item) => item.name === "Adidas"))
@@ -55,4 +55,4 @@ const Products = (props) => {
 	);
 };
 
-export default Products;
+export default Buttons;

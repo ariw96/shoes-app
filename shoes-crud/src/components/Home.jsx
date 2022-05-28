@@ -1,6 +1,5 @@
 import React,{useState,useContext} from "react";
 import { Card } from "react-bootstrap";
-import Products from "./Products";
 import { ProductContext } from "./ProductContext";
 export default function Home() {
 	const [data, setData] = useContext(ProductContext);
