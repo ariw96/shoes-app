@@ -2,22 +2,28 @@ import React, { useState, useContext } from "react";
 import { Button, Container, Stack } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { ProductContext } from "./ProductContext";
-import AddShoes from "./AddShoes";
-
 import ShowProducts from "./ShowProducts";
 
 const Buttons = (props) => {
-	const [filter, setFilter] = useState([]);
 	const [data, setData] = useContext(ProductContext);
-	const [sortState, setSortState] = useState("high-to-low");
+	const [filter, setFilter] = useState(data);
+	const [sortState, setSortState] = useState({
+		price:"high-to-low",
+	});
 	const sortPrice = () => {
-		if (sortState === "high-to-low") {
-			setSortState("low-to-high");
+		if (sortState.price === "high-to-low") {
+			setSortState({
+				price: "low-to-high",
+			});
 			return	setFilter(data.sort((a, b) => a.price - b.price))
 		}	
-			setSortState("high-to-low");
+			setSortState({
+				price: "high-to-low",
+			});
 			return	setFilter(data.sort((a, b) => b.price - a.price))
 	};
+
+
 
 	return (
 		<div>
@@ -31,18 +37,18 @@ const Buttons = (props) => {
 					</div>
 					<div className="d-flex justify-content-center mb-5 me-2 mx-2">
 						<Stack gap={2} direction="horizontal" variant="outline-secondary">
-							<Button onClick={() => setFilter(data)}>All</Button>
+							<Button onClick={() => setFilter(data)}>All Shoes</Button>
 						
 							<Button	onClick={() => setFilter(sortPrice)}>Sort by price</Button>
-							<Button
+							{/* <Button
 								onClick={() =>
-									setFilter(data.filter((item) => item.name === "Adidas"))
+									setData(addDetail)
 								}
 								>
-								Adidas
-							</Button>
+								Add detail
+							</Button> */}
 							<NavLink to="/add">
-								<Button>Add Shoe</Button>
+								<Button >Add Shoe</Button>
 							</NavLink>
 						</Stack>
 					</div>

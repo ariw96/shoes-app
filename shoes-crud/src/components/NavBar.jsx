@@ -31,10 +31,10 @@ function NavBar(props) {
 									Home
 								</Button>
 							</Link>
-							<Link to="products">
+							<Link to="buttons">
 								<Button variant="outline-dark" className=" me-2">
 									{" "}
-									Shoes {data.length}
+								Total Shoes: {data.length}
 								</Button>
 							</Link>
 

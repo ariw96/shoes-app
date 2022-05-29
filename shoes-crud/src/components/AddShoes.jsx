@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState, useContext } from "react";
-import { Button, Container, Form, Stack } from "react-bootstrap";
+import { Button,  Form, Stack } from "react-bootstrap";
 import { ProductContext } from "./ProductContext";
 
 import ShowProducts from "./ShowProducts";
@@ -24,15 +24,18 @@ const AddShoes = (props) => {
 
 	const handleData = async(e) => {
 		e.preventDefault();
-		setData([...data, { image: url, name: name, price: price }]);
+		setData([...data, { id: `${data.length + 1}`,image: url, name: name, price: price }]);
 		setUrl("");
 		setName("");
 		setPrice(10);
 		try {
 			const res = await axios.post("http://localhost:3001/shoes", {
+				id: `${data.length + 1}`,
 				image: url,
 				name: name,
 				price: price,
+				review: [],
+				rating: []
 			});
 			console.log(res);
 		} catch (err) {

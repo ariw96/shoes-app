@@ -1,10 +1,12 @@
 import React, { useState, useContext } from "react";
 import { ProductContext } from "./ProductContext";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
-import { Button, Card, Stack,Form } from "react-bootstrap";
+import { Button,  Stack,Form } from "react-bootstrap";
 
 function EditShoe(props) {
+	const { id } = useParams();
 	const [data, setData] = useContext(ProductContext);
 	const itemId = window.location.href.slice(22);
 	const shoe = data.find((item) => item.id === itemId);
@@ -26,10 +28,12 @@ function EditShoe(props) {
 	const handleData = () => {
 		try {
 				const edit = async () => {
-					const res = await axios.put(`http://localhost:3001/shoes/${itemId}`, {
+					const res = await axios.patch(`http://localhost:3001/shoes/${id}`, {
 						image: url,
 						name: name,
 						price: price,
+						review: shoe.review,
+						rating: shoe.rashoe
 					});
 					console.log(res);
 				}
@@ -37,13 +41,16 @@ function EditShoe(props) {
 				setUrl("");
 				setName("");
 				setPrice(10);
-				setData(data.map((item) => {
-					if (item.id === itemId) {
-						item.image = url;
-						item.name = name;
-						item.price = price;
+				setData(data.map((shoe) => {
+					if (shoe.id === itemId) {
+						shoe.id = itemId;
+						shoe.image = url;
+						shoe.name = name;
+						shoe.price = price;
+						shoe.review = shoe.review;
+						shoe.rating = shoe.rating;
 					}
-					return item;
+					return shoe;
 				}));
 
 			} catch (err) {

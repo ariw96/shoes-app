@@ -6,9 +6,10 @@ import Home from "./components/Home";
 import Buttons from "./components/Buttons";
 import EditShoe from "./components/EditShoe";
 import AddShoes from "./components/AddShoes";
-import { useState, useEffect,useContext } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ProductProvider } from "./components/ProductContext";
+import AddReview from "./components/AddReview";
+import "./App.css";
 
 
 
@@ -21,9 +22,10 @@ function App() {
 				<NavBar />
 				<Routes>
 					<Route path="/" element={<Home />} />
-					<Route path="products" element={<Buttons />} />
+					<Route path="buttons" element={<Buttons />} />
+                    <Route  path=":id" element={<EditShoe />} />
+                    <Route path=":id/review" element={<AddReview />} />
 					<Route path="add" element={<AddShoes />} />
-                    <Route path=":id" element={<EditShoe />} />
 				</Routes>
 			</Router>
 		</ProductProvider>
